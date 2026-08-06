@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin Dashboard</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="stylesheet" href="../css/admin_dashboard.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+
+      <aside class="sidebar">
+        <div>
+          <div class="logo">
+            <img src="../assets/images/logo.png" alt="Logo" />
+
+            <h3>LeaveEase</h3>
+          </div>
+
+          <nav>
+            <a href="admin_dashboard.html" class="menu-item active"> Dashboard </a>
+
+            <a href="admin_dashboard.html" class="menu-item">Leave Requests </a>
+
+            <a href="employees.html" class="menu-item">Employees </a>
+
+            <a href="#" class="menu-item">Settings </a>
+         </nav>
+        </div>
+
+        <button id="logoutBtn" class="logout-btn">
+          <i class="bi bi-box-arrow-right"></i>
+
+          Logout
+        </button>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="profile">
+            <span class="admin-name" id="adminName">Loading...</span>
+
+            <img src="https://i.pravatar.cc/40?img=12" alt="Admin" />
+          </div>
+        </header>
+
+        <div class="dashboard-content">
+          <section class="stats">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="bi bi-people-fill"></i>
+              </div>
+
+              <div class="stat-content">
+                <span>TOTAL FORCE</span>
+                <h2 id="totalEmployees">0</h2>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="bi bi-calendar-check"></i>
+              </div>
+
+              <div class="stat-content">
+                <span>PENDING TODAY</span>
+                <h2 id="pendingLeaves">0</h2>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="bi bi-building"></i>
+              </div>
+
+              <div class="stat-content">
+                <span>DEPARTMENTS</span>
+                <h2>12</h2>
+              </div>
+            </div>
+
+            <div class="stat-card dark">
+              <div class="stat-content">
+                <span>SYSTEM HEALTH</span>
+                <h2>98.2%</h2>
+              </div>
+
+              <i class="bi bi-graph-up-arrow graph"></i>
+            </div>
+          </section>
+
+          <section class="table-section">
+            <div class="table-header">
+              <div class="tabs">
+                <button class="tab active">Leave Requests</button>
+              </div>
+
+              <div class="table-tools">
+                <div class="search-box">
+                  <i class="bi bi-search"></i>
+
+                  <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search employees..."
+                  />
+                </div>
+
+                <button class="filter-btn">
+                  <i class="bi bi-funnel"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+          <section class="employee-table">
+            <table class="leave-table">
+              <thead>
+                <tr>
+                  <th>EMPLOYEE</th>
+                  <th>TYPE</th>
+                  <th>DURATION</th>
+                  <th>TIMELINE</th>
+                  <th>STATUS</th>
+                  <th>ACTIONS</th>
+                </tr>
+              </thead>
+
+              <tbody id="leaveTable"></tbody>
+            </table>
+
+            <div class="table-footer">
+              <span id="requestCount"> Showing 0-0 of 0 requests </span>
+
+              <div class="pagination">
+                <button id="prevPage">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <div id="pageNumbers"></div>
+
+                <button id="nextPage">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="admin-analytics">
+            <div class="analytics-card">
+              <div class="analytics-header">
+                <h4>Approval Statistics</h4>
+                <i class="bi bi-bar-chart-line"></i>
+              </div>
+
+              <div class="analytics-content">
+                <div class="stat-row">
+                  <span>Approved</span>
+                  <strong id="approvedCount">0</strong>
+                </div>
+
+                <div class="stat-row">
+                  <span>Pending</span>
+                  <strong id="pendingCount">0</strong>
+                </div>
+
+                <div class="stat-row">
+                  <span>Rejected</span>
+                  <strong id="rejectedCount">0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="analytics-card dark-card">
+              <div class="analytics-header">
+                <h4>Admin Summary</h4>
+                <i class="bi bi-clipboard-data"></i>
+              </div>
+
+              <div class="analytics-content">
+                <p>
+                  Monitor employee leave requests, approve or reject
+                  applications, and keep track of overall leave activity from
+                  one place.
+                </p>
+
+                <button class="summary-btn">
+                  <i class="bi bi-check2-circle"></i>
+                  Leave Management System
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../js/admin_dashboard.js"></script>
+  </body>
+</html>
