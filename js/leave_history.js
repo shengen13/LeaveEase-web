@@ -18,7 +18,7 @@ onAuthStateChanged(auth, async (user) => {
   const token = await currentUser.getIdToken(true);
 
   // Load Employee Details
-  const employeeResponse = await fetch("http://127.0.0.1:8000/auth/login", {
+  const employeeResponse = await fetch("https://leaveease-api-j9j8.onrender.com/auth/login", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ onAuthStateChanged(auth, async (user) => {
 // =============================
 
 async function loadLeaveHistory(token) {
-  const response = await fetch("http://127.0.0.1:8000/leave/history", {
+  const response = await fetch("https://leaveease-api-j9j8.onrender.com/leave/history", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ async function loadLeaveHistory(token) {
                 <td>
                     ${
                       leave.document
-                        ? `<a href="http://127.0.0.1:8000/${leave.document}"
+                        ? `<a href="https://leaveease-api-j9j8.onrender.com/${leave.document}"
                          target="_blank"
                      class="document-link">
                         View Document

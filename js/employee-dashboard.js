@@ -14,7 +14,7 @@ onAuthStateChanged(auth, async (firebaseUser) => {
   try {
     const token = await firebaseUser.getIdToken(true);
 
-    const response = await fetch("http://127.0.0.1:8000/auth/login", {
+    const response = await fetch("https://leaveease-api-j9j8.onrender.com/auth/login", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -44,7 +44,7 @@ onAuthStateChanged(auth, async (firebaseUser) => {
 
     async function loadLeaveBalance(token) {
       try {
-        const response = await fetch("http://127.0.0.1:8000/leave/history", {
+        const response = await fetch("https://leaveease-api-j9j8.onrender.com/leave/history", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -143,7 +143,7 @@ onAuthStateChanged(auth, async (firebaseUser) => {
 
 async function loadRecentRequests(token) {
   try {
-    const response = await fetch("http://127.0.0.1:8000/leave/history", {
+    const response = await fetch("https://leaveease-api-j9j8.onrender.com/leave/history", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

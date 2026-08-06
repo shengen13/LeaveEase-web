@@ -17,7 +17,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://leaveease-api-j9j8.onrender.com";
 
 const totalEmployees = document.getElementById("totalEmployees");
 const pendingLeaves = document.getElementById("pendingLeaves");

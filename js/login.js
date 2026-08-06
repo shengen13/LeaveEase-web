@@ -22,7 +22,7 @@ loginBtn.addEventListener("click", async (e) => {
 
         const token = await userCredential.user.getIdToken(true);
 
-        const response = await fetch("http://127.0.0.1:8000/auth/login", {
+        const response = await fetch("https://leaveease-api-j9j8.onrender.com/auth/login", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
