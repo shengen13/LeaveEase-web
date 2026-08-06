@@ -87,6 +87,9 @@ async function loadDashboard() {
 
     allLeaves = await response.json();
 
+    // Newest requests first
+    allLeaves.sort((a, b) => new Date(b.applied_on) - new Date(a.applied_on));
+
     filteredLeaves = [...allLeaves];
 
     document.getElementById("approvedCount").textContent = allLeaves.filter(
