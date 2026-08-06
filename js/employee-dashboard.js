@@ -14,12 +14,15 @@ onAuthStateChanged(auth, async (firebaseUser) => {
   try {
     const token = await firebaseUser.getIdToken(true);
 
-    const response = await fetch("https://leaveease-api-j9j8.onrender.com/auth/login", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      "https://leaveease-api-j9j8.onrender.com/auth/login",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     const user = await response.json();
 
@@ -30,8 +33,24 @@ onAuthStateChanged(auth, async (firebaseUser) => {
 
     document.getElementById("employeeName").textContent =
       user.name || "Employee";
-    document.getElementById("welcomeName").textContent =
-      user.name || "Employee";
+    const hour = new Date().getHours();
+
+    let greeting = "Welcome";
+
+    if (hour >= 5 && hour < 12) {
+      greeting = "Good Morning";
+    } else if (hour >= 12 && hour < 17) {
+      greeting = "Good Afternoon";
+    } else if (hour >= 17 && hour < 21) {
+      greeting = "Good Evening";
+    } else {
+      greeting = "Good Night";
+    }
+
+    document.getElementById("greeting").innerHTML = `
+    ${greeting},
+    <span id="welcomeName">${user.name || "Employee"}</span>
+`;
     document.getElementById("employeeEmail").textContent = user.email || "";
     document.getElementById("employeeDepartment").textContent =
       user.department || "";
@@ -44,11 +63,14 @@ onAuthStateChanged(auth, async (firebaseUser) => {
 
     async function loadLeaveBalance(token) {
       try {
-        const response = await fetch("https://leaveease-api-j9j8.onrender.com/leave/history", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const response = await fetch(
+          "https://leaveease-api-j9j8.onrender.com/leave/history",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
 
         if (!response.ok) return;
 
@@ -143,11 +165,14 @@ onAuthStateChanged(auth, async (firebaseUser) => {
 
 async function loadRecentRequests(token) {
   try {
-    const response = await fetch("https://leaveease-api-j9j8.onrender.com/leave/history", {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      "https://leaveease-api-j9j8.onrender.com/leave/history",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    });
+    );
 
     const leaves = await response.json();
 
@@ -232,4 +257,3 @@ logoutBtn.addEventListener("click", async () => {
     });
   }
 });
-
