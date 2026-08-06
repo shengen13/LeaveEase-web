@@ -6,7 +6,7 @@ let priority = "Standard";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "/frontend/login.html";
+    window.location.href = "/login.html";
     return;
   }
 

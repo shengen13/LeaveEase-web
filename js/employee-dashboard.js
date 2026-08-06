@@ -7,7 +7,7 @@ import {
 
 onAuthStateChanged(auth, async (firebaseUser) => {
   if (!firebaseUser) {
-    window.location.href = "/frontend/login.html";
+    window.location.href = "/login.html";
     return;
   }
 

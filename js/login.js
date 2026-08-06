@@ -52,9 +52,9 @@ loginBtn.addEventListener("click", async (e) => {
         }).then(() => {
 
             if (user.role === "admin") {
-                window.location.href = "/frontend/admin/admin_dashboard.html";
+                window.location.href = "/admin/admin_dashboard.html";
             } else {
-                window.location.href = "/frontend/employee/dashboard.html";
+                window.location.href = "/employee/dashboard.html";
             }
 
         });
