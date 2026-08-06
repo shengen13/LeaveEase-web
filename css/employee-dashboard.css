@@ -662,3 +662,46 @@ tbody td{
 .menu li.active a{
     color: #fff;
 }
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .top-section{
+        flex-direction: column;
+    }
+
+    .sidebar{
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main{
+        width: 100%;
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .overview-area{
+        flex-direction: column;
+    }
+
+    .cards{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .table-container{
+        overflow-x: auto;
+    }
+
+    table{
+        min-width: 700px;
+    }
+
+    img{
+        max-width:100%;
+        height:auto;
+    }
+}
