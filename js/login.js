@@ -5,6 +5,26 @@ import {
     sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+let selectedRole = "employee";
+
+const roleButtons = document.querySelectorAll(".role-btn");
+const loginButton = document.getElementById("loginBtn");
+
+roleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        selectedRole = button.dataset.role;
+
+        roleButtons.forEach((btn) => {
+            const isActive = btn === button;
+            btn.classList.toggle("active", isActive);
+            btn.setAttribute("aria-pressed", String(isActive));
+        });
+
+        loginButton.textContent =
+            selectedRole === "admin" ? "Login as Admin" : "Login as Employee";
+    });
+});
+
 const loginBtn = document.getElementById("loginBtn");
 
 loginBtn.addEventListener("click", async (e) => {
@@ -43,6 +63,18 @@ loginBtn.addEventListener("click", async (e) => {
                 confirmButtonColor: "#2563eb",
             });
 
+            return;
+        }
+
+        if (user.role !== selectedRole) {
+            Swal.fire({
+                icon: "error",
+                title: "Access Denied",
+                text: selectedRole === "admin"
+                    ? "This account does not have administrator access."
+                    : "Please select Employee to log in with this account.",
+                confirmButtonColor: "#2563eb",
+            });
             return;
         }
 
