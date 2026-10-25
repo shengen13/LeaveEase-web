@@ -1,6 +1,9 @@
 import { auth } from "./firebase.js";
 
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 const loginBtn = document.getElementById("loginBtn");
 
@@ -100,3 +103,30 @@ loginBtn.addEventListener("click", async (e) => {
     }
 
 });
+
+const forgotPassword = document.getElementById("forgotPassword");
+
+if (forgotPassword) {
+    forgotPassword.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+
+        if (!email) {
+            Swal.fire("Enter your email", "Please enter your email address first.", "warning");
+            return;
+        }
+
+        try {
+            await sendPasswordResetEmail(auth, email);
+
+            Swal.fire(
+                "Email sent",
+                "Check your inbox and spam folder for the password reset link.",
+                "success"
+            );
+        } catch (error) {
+            Swal.fire("Reset failed", error.message, "error");
+        }
+    });
+}
